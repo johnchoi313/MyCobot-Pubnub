@@ -71,12 +71,12 @@ def coord_test(mp):
     printGreen("Testing Coords...")
     mp.set_color(0,255,0)
 
-    coords = mp.get_coords() # # Get the current coordinates and pose of the head
-    print(coords)
+    #coords = mp.get_coords() # # Get the current coordinates and pose of the head
+    #print(coords)
 
-    mp.send_coords([187.8, 42.1, 183.3, -159.6, 0], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    mp.send_coords([187.8, 42.1, 183.3, -159.6], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
-    mp.send_coords([207.9, 47, 49.3,-159.69, 0], 80, 0) # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
+    mp.send_coords([207.9, 47, 49.3,-159.69], 80, 0) # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
 
     #To change only the x-coordinate of the head, set the x-coordinate of the head to 20. Let it plan the route at random and move the head to the changed position at a speed of 70mm/s

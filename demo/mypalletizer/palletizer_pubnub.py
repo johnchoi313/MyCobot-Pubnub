@@ -79,10 +79,10 @@ def coord_test(mp):
     
     #Testing X
     printGreen("Moving +X...")
-    mp.send_coords([60, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    mp.send_coords([160, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
     printGreen("Moving -X...")
-    mp.send_coords([160, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    mp.send_coords([60, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
 
     #Testing Y

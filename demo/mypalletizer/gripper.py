@@ -57,5 +57,5 @@ if __name__ == "__main__":
     port = str(plist[0]).split(" - ")[0].strip()
     
 
-    mycobot = MyPalletizer(1, 1000000, debug=True)
+    mycobot = MyPalletizer(port, 1000000, debug=True)
     gripper_test(mycobot)

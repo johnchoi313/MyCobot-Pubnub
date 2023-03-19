@@ -73,7 +73,7 @@ def coord_test(mp):
 
     #reset to zero
     printGreen("Zeroing coords...")
-    mp.send_angles([-180, 180, -90, 0], 50) 
+    mp.send_angles([-170, 170, -90, 0], 50) 
     mp.send_coords([100, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
     

@@ -79,7 +79,6 @@ def coord_test(mp):
     printGreen("Zeroing coords...")
     mp.send_angles([-170, 170, -90, 0], 50) 
     time.sleep(2)
-    
     mp.send_coords([100, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
     
@@ -131,13 +130,16 @@ def gripper_test(mp):
 if __name__ == "__main__":
     mp = MyPalletizer(getPorts(0), 1000000, debug=False)
 
-    mp.release_all_servos()
+    #mp.release_all_servos()
 
     #gripper_test(mp)
     #time.sleep(2)
 
-    coord_test(mp)
-    time.sleep(2)
+    #coord_test(mp)
+    #time.sleep(2)
+
+    mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
+
 
     #angle_test(mp)
     #time.sleep(2)

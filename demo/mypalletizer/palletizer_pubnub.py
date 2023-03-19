@@ -52,9 +52,12 @@ def angle_test(mp):
 
 
 
-    mp.send_angles([-170, 160, -80, 0], 50) 
-    time.sleep(2)
+    #mp.send_angles([-170, 160, -80, 0], 50) 
+    #time.sleep(2)
 
+    mp.send_angle(-170, 160, -80)
+    time.sleep(2)
+    
 
     '''
 

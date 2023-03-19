@@ -91,7 +91,7 @@ def angle_test(mp):
     #mp.send_angles([-0.87, 41.66, -12.13, -0.17], 50) # make robot arms reach the specified position
     #time.sleep(2)
 
-    mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
+    #mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
 
 #COORD TEST
 def coord_test(mp):
@@ -156,20 +156,22 @@ def gripper_test(mp):
         mp.set_gripper_state(1, 70) # let gripper close at the speed of 70
         time.sleep(2)
 
-#run the program
-if __name__ == "__main__":
-    mp = MyPalletizer(getPorts(0), 1000000, debug=False)
-
-    #mp.release_all_servos()
-
-    #gripper_test(mp)
-    #time.sleep(2)
-
-    #coord_test(mp)
-    #time.sleep(2)
-
-    #mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
 
 
-    angle_test(mp)
-    #time.sleep(2)
+#RUN YOU PIECE OF SHIT
+
+mp = MyPalletizer(getPorts(0), 1000000, debug=False)
+
+#mp.release_all_servos()
+
+#gripper_test(mp)
+#time.sleep(2)
+
+#coord_test(mp)
+#time.sleep(2)
+
+#mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
+
+
+angle_test(mp)
+#time.sleep(2)

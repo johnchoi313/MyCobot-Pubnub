@@ -53,7 +53,7 @@ def angle_test(mp):
     mp.send_angle(1,20,50) # Move joint 1 to the 50 position
     time.sleep(2)
 
-    for num in range(5):
+    for num in range(2):
         mp.send_angle(2,20,50)
         time.sleep(2)
         mp.send_angle(2,(-20),50)
@@ -91,7 +91,7 @@ def gripper_test(mp):
     time.sleep(2)
 
     #set a variable num, and then set a loop
-    for num in range(5):
+    for num in range(2):
         mp.set_gripper_state(0,70) #let gripper open at the speed of 70
         time.sleep(2)
         mp.set_gripper_state(1, 70) # let gripper close at the speed of 70

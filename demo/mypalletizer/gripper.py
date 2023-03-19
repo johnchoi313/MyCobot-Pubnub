@@ -6,7 +6,6 @@ from pymycobot.mycobot import MyCobot
 from pymycobot.mypalletizer import MyPalletizer
 
 sys.path.append(os.path.dirname(__file__))
-from port_setup import setup
 
 
 def gripper_test(mc):
@@ -44,5 +43,5 @@ def gripper_test(mc):
 
 
 if __name__ == "__main__":
-    mycobot = setup()
+    mycobot = MyPalletizer(1, 1000000, debug=True)
     gripper_test(mycobot)

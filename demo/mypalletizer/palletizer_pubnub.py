@@ -74,9 +74,9 @@ def coord_test(mp):
     coords = mp.get_coords() # # Get the current coordinates and pose of the head
     print(coords)
 
-    mp.send_coords([187.8, 42.1, 183.3, -159.6], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    mp.send_coords([187.8, 42.1, 183.3, -159.6, 0], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
-    mp.send_coords([207.9, 47, 49.3,-159.69], 80, 0) # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
+    mp.send_coords([207.9, 47, 49.3,-159.69, 0], 80, 0) # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
 
     #To change only the x-coordinate of the head, set the x-coordinate of the head to 20. Let it plan the route at random and move the head to the changed position at a speed of 70mm/s
@@ -102,12 +102,11 @@ def gripper_test(mp):
 if __name__ == "__main__":
     mypalletizer = MyPalletizer(getPorts(0), 1000000, debug=True)
 
-    gripper_test(mypalletizer)
-    time.sleep(2)
-
-    angle_test(mypalletizer)
-    time.sleep(2)
+    #gripper_test(mypalletizer)
+    #time.sleep(2)
 
     coord_test(mypalletizer)
     time.sleep(2)
 
+    #angle_test(mypalletizer)
+    #time.sleep(2)

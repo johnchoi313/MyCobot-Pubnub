@@ -40,6 +40,7 @@ def getPorts(portIndex = 0):
         idx += 1
     #get the specified port and return it
     portName = str(plist[portIndex]).split(" - ")[0].strip()
+    print(portName)
     return portName
 
 #ANGLES TEST
@@ -161,7 +162,7 @@ def gripper_test(mp):
 
 #RUN YOU PIECE OF SHIT
 
-mp = MyPalletizer(getPorts(1), 1000000, debug=False)
+mp = MyPalletizer(getPorts(0), 1000000, debug=False)
 
 #mp.release_all_servos()
 

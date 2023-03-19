@@ -47,11 +47,13 @@ def angle_test(mp):
     printRed("Testing Angles...")
     mp.set_color(255,0,0)
 
-    #mp.send_angles([0, 0, 0, 0], 50)
-    #time.sleep(2)
+    mp.send_angles([0, 0, 0, 0], 50)
+    time.sleep(2)
 
-    #mp.send_angles([-170, 160, -80, 0], 50) 
-    #time.sleep(2)
+    mp.send_angles([-170, 160, -80, 0], 50) 
+    time.sleep(2)
+
+    '''
 
     mp.send_angle(0, 0, 50)
     mp.send_angle(1, 0, 50)
@@ -74,8 +76,7 @@ def angle_test(mp):
     mp.send_angle(4, -20, 50)
     time.sleep(2)
     
-    '''
-
+    
     mp.send_angle(1,20,50) # Move joint 1 to the 50 position
     time.sleep(2)
 

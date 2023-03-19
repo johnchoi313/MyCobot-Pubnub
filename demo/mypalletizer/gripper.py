@@ -43,5 +43,15 @@ def gripper_test(mc):
 
 
 if __name__ == "__main__":
+
+    plist = list(serial.tools.list_ports.comports())
+    idx = 1
+    for port in plist:
+        print("{} : {}".format(idx, port))
+        idx += 1
+
+    port = str(plist[0]).split(" - ")[0].strip()
+    
+
     mycobot = MyPalletizer(1, 1000000, debug=True)
     gripper_test(mycobot)

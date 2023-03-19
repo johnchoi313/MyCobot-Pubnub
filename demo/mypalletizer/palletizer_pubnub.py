@@ -31,7 +31,7 @@ json schema{
 '''
 
 #Find and connect port
-def getPorts(portIndex = 1):
+def getPorts(portIndex = 0):
     #print all ports
     plist = list(serial.tools.list_ports.comports())
     idx = 1
@@ -39,7 +39,7 @@ def getPorts(portIndex = 1):
         print("{} : {}".format(idx, port))
         idx += 1
     #get the specified port and return it
-    portName = str(portIndex).split(" - ")[0].strip()
+    portName = str(plist[portIndex]).split(" - ")[0].strip()
     return portName
 
 #ANGLES TEST
@@ -100,7 +100,7 @@ def gripper_test(mp):
 
 #run the program
 if __name__ == "__main__":
-    mypalletizer = MyPalletizer(getPorts(1), 1000000, debug=True)
+    mypalletizer = MyPalletizer(getPorts(0), 1000000, debug=True)
 
     gripper_test(mypalletizer)
     time.sleep(2)

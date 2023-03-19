@@ -6,10 +6,15 @@ import serial
 import serial.tools.list_ports
 
 from pymycobot.genre import Angle, Coord
-
 from pymycobot.mypalletizer import MyPalletizer
 
+from ColorPrinter import *
+
 sys.path.append(os.path.dirname(__file__))
+
+#Angle Example: https://docs.elephantrobotics.com/docs/gitbook-en/7-ApplicationBasePython/7.3_angle.html
+#Coord Example: https://docs.elephantrobotics.com/docs/gitbook-en/7-ApplicationBasePython/7.3_coord.html
+#Gripper Example: https://docs.elephantrobotics.com/docs/gitbook-en/7-ApplicationBasePython/7.5_gripper.html
 
 '''
 json schema{
@@ -25,106 +30,84 @@ json schema{
 }
 '''
 
-def setup():
-    print("")
-
+#Find and connect port
+def getPorts(portIndex = 0):
+    #print all ports
     plist = list(serial.tools.list_ports.comports())
     idx = 1
     for port in plist:
         print("{} : {}".format(idx, port))
         idx += 1
+    #get the specified port and return it
+    portName = str(portIndex).split(" - ")[0].strip()
+    return portName
 
-    _in = input("\nPlease input 1 - {} to choice:".format(idx - 1))
-    port = str(plist[int(_in) - 1]).split(" - ")[0].strip()
-    print(port)
-    print("")
+#ANGLES TEST
+def angle_test(mp):
+    printRed("Testing Angles...")
+    mp.set_color(255,0,0)
 
-    baud = 1000000
-    _baud = input("Please input baud(default:1000000):")
-    try:
-        baud = int(_baud)
-    except Exception:
-        pass
-    print(baud)
-    print("")
-
-    DEBUG = False
-    f = input("Wether DEBUG mode[Y/n]:")
-    if f in ["y", "Y", "yes", "Yes"]:
-        DEBUG = True
-
-    # mc = MyCobot(port, debug=True)
-    mc = MyPalletizer(1, 1000000, debug=DEBUG)
-    return mc
-
-
-
-def test(mycobot):
-    reset = [153.19, 137.81, -153.54, 156.79, 87.27, 13.62]
-    print("\nStart check basic options\n")
-
-    mycobot.set_color(255, 255, 0)
-    print("::set_color() ==> color {}\n".format("255 255 0"))
-    time.sleep(3)
-
-    angles = [0, 0, 0, 0, 0, 0]
-    mycobot.send_angles(angles, 100)
-    print("::send_angles() ==> angles {}, speed 100\n".format(angles))
-    time.sleep(3)
-
-    print("::get_angles() ==> degrees: {}\n".format(mycobot.get_angles()))
-    time.sleep(1)
-
-    mycobot.send_angle(Angle.J1.value, 90, 50)
-    print("::send_angle() ==> angle: joint1, degree: 90, speed: 50\n")
-    time.sleep(4)
-
-    radians = [1, 1, 1, 1, 1, 1]
-    mycobot.send_radians(radians, 100)
-    print("::send_radians() ==> set radians {}, speed 100\n".format(radians))
-    time.sleep(3)
-
-    print("::get_radians() ==> radians: {}\n".format(mycobot.get_radians()))
-    time.sleep(1)
-
-    coords = [160, 160, 160, 0, 0, 0]
-    mycobot.send_coords(coords, 70, 0)
-    print("::send_coords() ==> send coords {}, speed 70, mode 0\n".format(coords))
-    time.sleep(3)
-
-    print("::get_coords() ==> coords {}\n".format(mycobot.get_coords()))
-    time.sleep(0.5)
-
-    mycobot.send_coord(Coord.X.value, -40, 70)
-    print("::send_coord() ==> send coord id: X, coord value: -40, speed: 70\n")
+    mp.send_angles([0, 0, 0, 0,], 50)
     time.sleep(2)
 
-    print("::set_free_mode()\n")
-    mycobot.send_angles(reset, 100)
-    time.sleep(5)
-    mycobot.release_all_servos()
+    mp.send_angle(1,20,50) # Move joint 1 to the 50 position
+    time.sleep(2)
 
-    print("=== check end ===\n")
+    for num in range(5):
+        mp.send_angle(2,20,50)
+        time.sleep(2)
+        mp.send_angle(2,(-20),50)
+        time.sleep(2)
+    
+    mp.send_angles([-0.87, 41.66, -12.13, -0.17], 50) # make robot arms reach the specified position
+    mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
+
+    coords = [160, 160, 160, 0, 0, 0]
+    mp.send_coords(coords, 70, 0)
+    mp.send_coord(Coord.X.value, -40, 70)
+
+#COORD TEST
+def coord_test(mp):
+    printGreen("Testing Coords...")
+    mp.set_color(0,255,0)
+
+    coords = mp.get_coords() # # Get the current coordinates and pose of the head
+    print(coords)
+
+    mp.send_coords([187.8, 42.1, 183.3, -159.6], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    time.sleep(2)
+    mp.send_coords([207.9, 47, 49.3,-159.69], 80, 0) # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
+    time.sleep(2)
+
+    #To change only the x-coordinate of the head, set the x-coordinate of the head to 20. Let it plan the route at random and move the head to the changed position at a speed of 70mm/s
+    mp.send_coord(Coord.X.value, 20, 50)
+
+#GRIPPER TEST
+def gripper_test(mp):
+    printBlue("Testing Gripper...")
+    mp.set_color(0,0,255)
+
+    mp.send_angle(2, 30, 50) # let joint2 move to 30 degree at the speed of 50
+    time.sleep(2)
+
+    #set a variable num, and then set a loop
+    for num in range(5):
+        mp.set_gripper_state(0,70) #let gripper open at the speed of 70
+        time.sleep(2)
+        mp.set_gripper_state(1, 70) # let gripper close at the speed of 70
+        time.sleep(2)
 
 
+#run the program
 if __name__ == "__main__":
-    print(
-        """
---------------------------------------------
-| This file will test basic option method: |
-|     set_led_color()                      |
-|     send_angles()                        |
-|     get_angles()                         |
-|     send_angle()                         |
-|     send_radians()                       |
-|     get_radians()                        |
-|     send_coords()                        |
-|     get_coords()                         |
-|     send_coord()                         |
---------------------------------------------
-          """
-    )
-    time.sleep(3)
+    mypalletizer = MyPalletizer(getPorts(0), 1000000, debug=True)
 
-    mypalletizer = setup()
-    test(mypalletizer)
+    gripper_test(mypalletizer)
+    time.sleep(2)
+
+    angle_test(mypalletizer)
+    time.sleep(2)
+
+    coord_test(mypalletizer)
+    time.sleep(2)
+

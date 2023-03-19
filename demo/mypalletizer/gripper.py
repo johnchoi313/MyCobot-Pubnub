@@ -5,12 +5,11 @@ import sys
 import serial
 import serial.tools.list_ports
 
-
 from pymycobot.mycobot import MyCobot
 from pymycobot.mypalletizer import MyPalletizer
+from pymycobot.genre import Angle, Coord
 
 sys.path.append(os.path.dirname(__file__))
-
 
 def gripper_test(mc):
     print("Start check IO part of api\n")
@@ -54,8 +53,11 @@ if __name__ == "__main__":
         print("{} : {}".format(idx, port))
         idx += 1
 
-    port = str(plist[0]).split(" - ")[0].strip()
+    portIndex = 0
+    port = str(portIndex).split(" - ")[0].strip()
     
 
     mycobot = MyPalletizer(port, 1000000, debug=True)
     gripper_test(mycobot)
+
+

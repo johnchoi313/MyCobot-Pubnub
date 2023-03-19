@@ -138,11 +138,11 @@ if __name__ == "__main__":
     #gripper_test(mp)
     #time.sleep(2)
 
-    coord_test(mp)
+    #coord_test(mp)
     #time.sleep(2)
 
     #mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
 
 
-    #angle_test(mp)
+    angle_test(mp)
     #time.sleep(2)

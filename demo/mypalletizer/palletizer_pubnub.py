@@ -68,20 +68,39 @@ def angle_test(mp):
 
 #COORD TEST
 def coord_test(mp):
-    printGreen("Testing Coords...")
+    printGreenB("Testing Coords...")
     mp.set_color(0,255,0)
 
     #reset to zero
+    printGreen("Zeroing coords...")
     mp.send_angles([-180, 180, -90, 0], 50) 
+    mp.send_coords([100, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
-
-    #print( mp.get_coords() ) # Get the current coordinates and pose of the head
     
-    mp.send_coords([96, 8, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    #Testing X
+    printGreen("Moving +X...")
+    mp.send_coords([60, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    time.sleep(2)
+    printGreen("Moving -X...")
+    mp.send_coords([160, 10, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
 
-    mp.send_coords([96, 8, -130, 180], 80, 0) # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
+    #Testing Y
+    printGreen("Moving +Y...")
+    mp.send_coords([100, 20, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
+    printGreen("Moving -Y...")
+    mp.send_coords([100, -20, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    time.sleep(2)
+
+    #Testing Z
+    printGreen("Moving +Z...")
+    mp.send_coords([100, 10, -70, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    time.sleep(2)
+    printGreen("Moving -Z...")
+    mp.send_coords([100, 10, -200, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
+    time.sleep(2)
+
 
     #mp.send_coord(Coord.X.value, 20, 50) #To change only the x-coordinate of the head, set the x-coordinate of the head to 20. Let it plan the route at random and move the head to the changed position at a speed of 70mm/s
     #time.sleep(2)

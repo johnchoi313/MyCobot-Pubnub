@@ -50,21 +50,35 @@ def angle_test(mp):
     mp.send_angles([0, 0, 0, 0], 50)
     time.sleep(2)
 
+
+
+    mp.send_angles([-170, 160, -80, 0], 50) 
+    time.sleep(2)
+
+
+    '''
+
     mp.send_angle(1,20,50) # Move joint 1 to the 50 position
     time.sleep(2)
 
     for num in range(2):
         mp.send_angle(2,20,50)
         time.sleep(2)
+
         mp.send_angle(2,(-20),50)
         time.sleep(2)
-    
+
+    '''
+
+
+
     mp.send_angles([-0.87, 41.66, -12.13, -0.17], 50) # make robot arms reach the specified position
+    time.sleep(2)
+
     mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
 
-    coords = [160, 160, 160, 0, 0, 0]
-    mp.send_coords(coords, 70, 0)
-    mp.send_coord(Coord.X.value, -40, 70)
+
+
 
 #COORD TEST
 def coord_test(mp):

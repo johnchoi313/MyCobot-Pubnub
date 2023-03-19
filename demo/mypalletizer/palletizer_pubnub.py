@@ -161,7 +161,7 @@ def gripper_test(mp):
 
 #RUN YOU PIECE OF SHIT
 
-mp = MyPalletizer(getPorts(0), 1000000, debug=False)
+mp = MyPalletizer(getPorts(1), 1000000, debug=False)
 
 #mp.release_all_servos()
 

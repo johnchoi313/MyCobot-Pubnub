@@ -1,7 +1,9 @@
 import os
 import time
 import sys
+
 from pymycobot.mycobot import MyCobot
+from pymycobot.mypalletizer import MyPalletizer
 
 sys.path.append(os.path.dirname(__file__))
 from port_setup import setup

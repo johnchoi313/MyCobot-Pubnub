@@ -1,7 +1,7 @@
 import serial
 import serial.tools.list_ports
 
-from pymycobot.mycobot import MyPalletizer
+from pymycobot.mypalletizer import MyPalletizer
 
 def setup():
     print("")

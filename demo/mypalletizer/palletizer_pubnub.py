@@ -129,7 +129,7 @@ def gripper_test(mp):
 
 #run the program
 if __name__ == "__main__":
-    mp = MyPalletizer(getPorts(0), 1000000, debug=True)
+    mp = MyPalletizer(getPorts(0), 1000000, debug=False)
 
     mp.release_all_servos()
 

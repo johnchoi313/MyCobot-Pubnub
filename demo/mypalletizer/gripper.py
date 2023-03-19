@@ -2,6 +2,10 @@ import os
 import time
 import sys
 
+import serial
+import serial.tools.list_ports
+
+
 from pymycobot.mycobot import MyCobot
 from pymycobot.mypalletizer import MyPalletizer
 

@@ -47,12 +47,14 @@ def getPorts(portIndex = 0):
 def angle_test(mp):
     printRed("Testing Angles...")
     mp.set_color(255,0,0)
-
     mp.send_angles([0, 0, 0, 0], 50)
     time.sleep(2)
 
+    printRed("FUCK YOU...")
+    mp.set_color(0,255,0)
     mp.send_angles([-170, 160, -80, 0], 50) 
     time.sleep(2)
+
 
     '''
 

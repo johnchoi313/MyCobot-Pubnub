@@ -30,7 +30,9 @@ def setup():
     f = input("Wether DEBUG mode[Y/n]:")
     if f in ["y", "Y", "yes", "Yes"]:
         DEBUG = True
+    
     # mc = MyCobot(port, debug=True)
-    mc = MyPalletizer(port, baud, debug=DEBUG)
+    mc = MyPalletizer(1, 1000000, debug=DEBUG)
+
     return mc
 

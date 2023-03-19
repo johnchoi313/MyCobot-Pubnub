@@ -5,9 +5,9 @@ import os
 import serial
 import serial.tools.list_ports
 
-from pymycobot.mycobot import MyCobot
-from pymycobot.mycobot import MyPalletizer
 from pymycobot.genre import Angle, Coord
+
+from pymycobot.mypalletizer import MyPalletizer
 
 sys.path.append(os.path.dirname(__file__))
 
@@ -40,7 +40,7 @@ def setup():
     print("")
 
     baud = 1000000
-    _baud = input("Please input baud(default:115200):")
+    _baud = input("Please input baud(default:1000000):")
     try:
         baud = int(_baud)
     except Exception:
@@ -52,8 +52,9 @@ def setup():
     f = input("Wether DEBUG mode[Y/n]:")
     if f in ["y", "Y", "yes", "Yes"]:
         DEBUG = True
+
     # mc = MyCobot(port, debug=True)
-    mc = MyPalletizer(port, baud, debug=DEBUG)
+    mc = MyPalletizer(1, 1000000, debug=DEBUG)
     return mc
 
 
@@ -125,5 +126,5 @@ if __name__ == "__main__":
     )
     time.sleep(3)
 
-    mypallet = setup()
-    test(mycobot)
+    mypalletizer = setup()
+    test(mypalletizer)

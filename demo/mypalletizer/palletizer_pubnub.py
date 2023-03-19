@@ -71,20 +71,20 @@ def coord_test(mp):
     printGreen("Testing Coords...")
     mp.set_color(0,255,0)
 
-
-    mp.send_angles([0, 0, 0, 0], 50)
+    #reset to zero
+    mp.send_angles([-180, 180, -90, 0], 50) 
     time.sleep(2)
 
-    #coords = mp.get_coords() # # Get the current coordinates and pose of the head
-    #print(coords)
-
-    mp.send_coords([0,0,0,0], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
-    time.sleep(2)
-    mp.send_coords([0,0,0,0], 80, 0) # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
+    #print( mp.get_coords() ) # Get the current coordinates and pose of the head
+    
+    mp.send_coords([96, 8, -130, 180], 80, 0) #Plan the route at random, let the head reach the coordinates of [57.0, -107.4, 316.3] in an non-linear manner at the speed is 80mm/s
     time.sleep(2)
 
-    #To change only the x-coordinate of the head, set the x-coordinate of the head to 20. Let it plan the route at random and move the head to the changed position at a speed of 70mm/s
-    #mp.send_coord(Coord.X.value, 20, 50)
+    mp.send_coords([96, 8, -130, 180], 80, 0) # Plan the route at random, let the head reach the coordinates of [207.9, 47, 49.3,-159.69] in an non-linear manner at the speed is 80mm/s
+    time.sleep(2)
+
+    #mp.send_coord(Coord.X.value, 20, 50) #To change only the x-coordinate of the head, set the x-coordinate of the head to 20. Let it plan the route at random and move the head to the changed position at a speed of 70mm/s
+    #time.sleep(2)
 
     mp.release_all_servos() # Let the robotic arm relax, you can manually swing the robotic arm
 
@@ -102,7 +102,6 @@ def gripper_test(mp):
         time.sleep(2)
         mp.set_gripper_state(1, 70) # let gripper close at the speed of 70
         time.sleep(2)
-
 
 #run the program
 if __name__ == "__main__":

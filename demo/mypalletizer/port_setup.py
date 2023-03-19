@@ -1,9 +1,7 @@
 import serial
 import serial.tools.list_ports
 
-from pymycobot.mycobot import MyCobot
-
-
+from pymycobot.mycobot import MyPalletizer
 
 def setup():
     print("")
@@ -33,6 +31,6 @@ def setup():
     if f in ["y", "Y", "yes", "Yes"]:
         DEBUG = True
     # mc = MyCobot(port, debug=True)
-    mc = MyCobot(port, baud, debug=DEBUG)
+    mc = MyPalletizer(port, baud, debug=DEBUG)
     return mc
 

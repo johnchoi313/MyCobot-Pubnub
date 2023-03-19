@@ -80,7 +80,7 @@ def coord_test(mp):
     time.sleep(2)
 
     #To change only the x-coordinate of the head, set the x-coordinate of the head to 20. Let it plan the route at random and move the head to the changed position at a speed of 70mm/s
-    mp.send_coord(Coord.X.value, 20, 50, 0)
+    mp.send_coord(Coord.X.value, 20, 50)
 
 #GRIPPER TEST
 def gripper_test(mp):
